@@ -25,14 +25,13 @@ System Requirements
 		- Plex/Web
 		- Android
 		- Chromecast
-		- Windows 8
-		- Xbox One
 
 	- Not Tested:
 		- Roku
 		- iOS
 		- PlexConnect
 		- PS3/360
+		- Windows 8
 		- Windows Phone
 		- Smart TV
 
