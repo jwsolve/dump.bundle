@@ -37,12 +37,11 @@ def MainMenu():
 	oc = ObjectContainer()
 	page_data = HTML.ElementFromURL(BASE_URL)
 
-	for each in page_data.xpath("//div/a[@class='b']"):
+	for each in page_data.xpath("//div[@class='video-entry']"):
 		oc.add(VideoClipObject(
-			url = BASE_URL + each.xpath("./@href")[0],
-			originally_available_at = Datetime.ParseDate(each.xpath("./span[@class='video_date']/text()")[0]),
-			title = each.xpath("./span[@class='video_title']/text()")[0],
-			thumb = each.xpath("./img/@data-original")[0],
+			url = BASE_URL + each.xpath("./a/@href")[0],
+			title = each.xpath("./h2[@class='video-title']/a/text()")[0],
+			thumb = each.xpath("./a/img/@data-original")[0]
 			)
 		)
 
@@ -66,7 +65,7 @@ def Archives():
 
 	for each in page_data.xpath("//a[@class='b']"):
 		oc.add(DirectoryObject(
-			key = Callback(Browse, url = BASE_URL + each.xpath("./@href")[0]),
+			key = Callback(Browse, url = each.xpath("./@href")[0]),
 			title = each.xpath("./text()")[0],
 			thumb = ICON_LIST
 			)
@@ -83,12 +82,11 @@ def Browse(url):
 	oc = ObjectContainer()
 	page_data = HTML.ElementFromURL(url)
 
-	for each in page_data.xpath("//div/a[@class='b']"):
+	for each in page_data.xpath("//div[@class='video-entry']"):
 		oc.add(VideoClipObject(
-			url = BASE_URL + each.xpath("./@href")[0],
-			originally_available_at = Datetime.ParseDate(each.xpath("./span[@class='video_date']/text()")[0]),
-			title = each.xpath("./span[@class='video_title']/text()")[0],
-			thumb = each.xpath("./img/@data-original")[0],
+			url = BASE_URL + each.xpath("./a/@href")[0],
+			title = each.xpath("./h2[@class='video-title']/a/text()")[0],
+			thumb = each.xpath("./a/img/@data-original")[0]
 			)
 		)
 
